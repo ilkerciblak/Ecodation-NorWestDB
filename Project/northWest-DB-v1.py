@@ -19,6 +19,9 @@ import json
 import requests
 import time
 import urllib
+from googletrans import Translator
+
+translator = Translator()
 
 # Customers API için GET Request yapılması
 urlCustomers = "https://northwind.netcore.io/query/customers.json" # json bağlantısı
@@ -166,7 +169,7 @@ def siparisAra(siparisId):
                 print("=========================="*2)
 
                 for dir in jsonRouter["route"]["legs"][0]["maneuvers"]:
-                    print(f"{dir['narrative']} ({dir['distance']*1.61 : .2f} km)")
+                    print(f"{translator.translate(dir['narrative'], dest='tr').text} ({dir['distance']*1.61 : .2f} km)")
                     
 
                 print("=============================================\n")
